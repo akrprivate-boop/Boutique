@@ -200,4 +200,16 @@ export const orderService = {
   async markAsDelivered(id) {
     return this.update(id, { delivery_status: true });
   },
+
+  /**
+   * Delete an order
+   */
+  async deleteOrder(id) {
+    const { data, error } = await supabase
+      .from('orders')
+      .delete()
+      .eq('id', id);
+    if (error) throw error;
+    return data;
+  },
 };
