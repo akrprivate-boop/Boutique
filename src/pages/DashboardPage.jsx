@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import Header from '../../components/layout/Header';
-import TabNav from '../../components/layout/TabNav';
-import SummaryCards from '../../components/dashboard/SummaryCards';
-import RevenueChart from '../../components/dashboard/RevenueChart';
-import CustomerForm from '../../components/forms/CustomerForm';
-import Calendar from '../../components/calendar/Calendar';
-import CustomerTable from '../../components/tables/CustomerTable';
-import Loader from '../../components/common/Loader';
-import { useOrders } from '../../hooks/useOrders';
+import Header from '../components/layout/Header';
+import TabNav from '../components/layout/TabNav';
+import SummaryCards from '../components/dashboard/SummaryCards';
+import RevenueChart from '../components/dashboard/RevenueChart';
+import CustomerForm from '../components/forms/CustomerForm';
+import Calendar from '../components/calendar/Calendar';
+import CustomerTable from '../components/tables/CustomerTable';
+import Loader from '../components/common/Loader';
+import { useOrders } from '../hooks/useOrders';
 
 export default function DashboardPage() {
   const [activeTab, setActiveTab] = useState('overview');
