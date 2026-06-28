@@ -7,14 +7,15 @@ import {
   Edit2, 
   CheckCircle,
   XCircle,
-  Database
+  Database,
+  Trash2
 } from 'lucide-react';
 import { formatDateDMY, formatCurrency, calcPending } from '../../utils/formatters';
 import { exportToPDF, exportToExcel } from '../../utils/exportUtils';
 import TableFilters from './TableFilters';
 import '../../styles/tables.css';
 
-export default function CustomerTable({ orders, onRefresh, isLoading }) {
+export default function CustomerTable({ orders, onRefresh, isLoading, onDeleteOrder }) {
   const [showFilters, setShowFilters] = useState(false);
   const [filters, setFilters] = useState({
     search: '',
@@ -105,12 +106,13 @@ export default function CustomerTable({ orders, onRefresh, isLoading }) {
                 <th>Advance</th>
                 <th>Pending</th>
                 <th>Status</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
               {orders.length === 0 ? (
                 <tr>
-                  <td colSpan="9">
+                  <td colSpan="10">
                     <div className="table-empty">
                       <Database className="table-empty-icon" size={48} />
                       <h4 className="table-empty-title">No matching records found</h4>
@@ -136,6 +138,20 @@ export default function CustomerTable({ orders, onRefresh, isLoading }) {
                         <span className="status-dot"></span>
                         {order.delivery_status ? 'Delivered' : 'Pending'}
                       </span>
+                    </td>
+                    <td>
+                      <button 
+                        className="btn-icon" 
+                        title="Delete Order"
+                        style={{ color: '#ef4444', background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                        onClick={() => {
+                          if (window.confirm(`Are you sure you want to delete order ${order.order_number}?`)) {
+                            onDeleteOrder(order.id);
+                          }
+                        }}
+                      >
+                        <Trash2 size={16} />
+                      </button>
                     </td>
                   </tr>
                 ))
