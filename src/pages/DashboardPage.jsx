@@ -11,7 +11,7 @@ import { useOrders } from '../hooks/useOrders';
 
 export default function DashboardPage() {
   const [activeTab, setActiveTab] = useState('overview');
-  const { orders, summary, isLoading, loadOrders, refresh } = useOrders();
+  const { orders, summary, isLoading, loadOrders, refresh, deleteOrder } = useOrders();
 
   const handleOrderCreated = () => {
     refresh();
@@ -59,6 +59,7 @@ export default function DashboardPage() {
               orders={orders} 
               onRefresh={loadOrders} 
               isLoading={isLoading} 
+              onDeleteOrder={deleteOrder}
             />
           </div>
         )}
