@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { useAuth } from '../../hooks/useAuth';
-import config from '../../config/config';
+import { useAuth } from '../hooks/useAuth';
+import config from '../config/config';
 import { Lock, User } from 'lucide-react';
-import '../../styles/login.css';
+import '../styles/login.css';
 
 export default function LoginPage() {
   const [username, setUsername] = useState('');
