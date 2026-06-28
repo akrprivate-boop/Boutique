@@ -10,7 +10,7 @@
 
 const config = {
   /* ───── Boutique Identity ───── */
-  boutiqueName: "My Boutique",
+  boutiqueName: "Royal Threads",
   tagline: "Where Elegance Meets Style",
 
   /* ───── Theme ───── */
