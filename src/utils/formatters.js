@@ -9,6 +9,12 @@ import config from '../config/config';
  */
 export function formatDateDMY(dateStr) {
   if (!dateStr) return '—';
+  
+  if (typeof dateStr === 'string' && dateStr.length === 10 && dateStr.includes('-')) {
+    const [yyyy, mm, dd] = dateStr.split('-');
+    return `${dd}-${mm}-${yyyy}`;
+  }
+
   const date = new Date(dateStr);
   const dd = String(date.getDate()).padStart(2, '0');
   const mm = String(date.getMonth() + 1).padStart(2, '0');
@@ -22,7 +28,10 @@ export function formatDateDMY(dateStr) {
 export function formatDateISO(dateStr) {
   if (!dateStr) return '';
   const date = new Date(dateStr);
-  return date.toISOString().split('T')[0];
+  const yyyy = date.getFullYear();
+  const mm = String(date.getMonth() + 1).padStart(2, '0');
+  const dd = String(date.getDate()).padStart(2, '0');
+  return `${yyyy}-${mm}-${dd}`;
 }
 
 /**
@@ -47,7 +56,11 @@ export function formatCurrency(amount) {
  * Get today's date as YYYY-MM-DD
  */
 export function getTodayISO() {
-  return new Date().toISOString().split('T')[0];
+  const date = new Date();
+  const yyyy = date.getFullYear();
+  const mm = String(date.getMonth() + 1).padStart(2, '0');
+  const dd = String(date.getDate()).padStart(2, '0');
+  return `${yyyy}-${mm}-${dd}`;
 }
 
 /**
