@@ -37,6 +37,18 @@ export function useOrders() {
     await Promise.all([loadOrders(), loadSummary()]);
   }, [loadOrders, loadSummary]);
 
+  const deleteOrder = useCallback(async (id) => {
+    try {
+      await orderService.deleteOrder(id);
+      await refresh();
+      return true;
+    } catch (err) {
+      console.error('Failed to delete order:', err);
+      alert('Failed to delete order: ' + err.message);
+      return false;
+    }
+  }, [refresh]);
+
   useEffect(() => {
     refresh();
   }, [refresh]);
@@ -49,5 +61,6 @@ export function useOrders() {
     loadOrders,
     loadSummary,
     refresh,
+    deleteOrder,
   };
 }
